@@ -2,7 +2,6 @@ import { Options } from 'tsup';
 import { defineConfig } from 'tsup';
 const shared = {
 	entry: ['src/index.ts'],
-	external: ['discord.js'],
 	platform: 'node',
 	tsconfig: 'tsconfig.base.json',
 	clean: true,

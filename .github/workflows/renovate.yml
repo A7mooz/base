@@ -1,9 +1,10 @@
 name: Renovate
 on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
   schedule:
-    # The "*" (#42, asterisk) character has special semantics in YAML, so this
-    # string has to be quoted.
-    # run this every friday at 2 P.M.
     - cron: '0 12 * * 5'
 jobs:
   renovate:

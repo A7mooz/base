@@ -18,7 +18,7 @@ vite.config.ts
 
 CODE_OF_CONDUCT.md
 
-babel.config.js
+tests/
 
 tsup.config.ts
 

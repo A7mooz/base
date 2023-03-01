@@ -5,7 +5,6 @@ const shared = {
 	platform: 'node',
 	tsconfig: 'tsconfig.base.json',
 	clean: true,
-	sourcemap: false,
 	minify: true,
 } satisfies Options;
 

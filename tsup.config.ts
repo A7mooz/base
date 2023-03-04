@@ -1,9 +1,8 @@
-import { Options } from 'tsup';
-import { defineConfig } from 'tsup';
+import { defineConfig, Options } from 'tsup';
+
 const shared = {
 	entry: ['src/index.ts'],
 	platform: 'node',
-	tsconfig: 'tsconfig.base.json',
 	clean: true,
 	minify: true,
 } satisfies Options;

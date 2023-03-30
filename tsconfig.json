@@ -1,14 +1,15 @@
 {
 	"compilerOptions": {
 		"target": "ESNext",
+		"module": "ESNext",
 		"rootDir": "src",
 		"strict": true,
 		"esModuleInterop": true,
 		"noImplicitAny": true,
 		"experimentalDecorators": true,
 		"strictNullChecks": true,
-		"importsNotUsedAsValues": "error",
-		"moduleResolution": "node",
+		"verbatimModuleSyntax": true,
+		"moduleResolution": "bundler",
 		"skipLibCheck": true,
 		"declaration": true,
 		"allowSyntheticDefaultImports": true,

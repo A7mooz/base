@@ -9,5 +9,5 @@ export default defineConfig({
 	external: ['discord.js', 'mongoose'],
 	treeshake: true,
 	minify: true,
-	splitting: false
+	splitting: false,
 });

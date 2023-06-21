@@ -9,6 +9,7 @@
 		"build": "tsup --dts",
 		"lint": "eslint src/**/*.ts --fix",
 		"pretty": "prettier -w .",
+		"fmt": "pnpm pretty && pnpm lint",
 		"prepare": "husky install"
 	},
 	"repository": {
@@ -29,6 +30,7 @@
 		"@typescript-eslint/eslint-plugin": "^5.59.9",
 		"@typescript-eslint/parser": "^5.59.9",
 		"eslint": "^8.42.0",
+		"eslint-config-prettier": "^8.8.0",
 		"husky": "^8.0.3",
 		"prettier": "^2.8.8",
 		"pretty-quick": "^3.1.3",

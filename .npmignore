@@ -1,4 +1,5 @@
-!/dist/
-!/LICENSE
-!/package.json
-!/README.md
+./*
+!./dist/
+!./LICENSE
+!./package.json
+!./README.md

@@ -5,7 +5,11 @@
     "rules": {
         "indent": "error",
         "@typescript-eslint/no-non-null-assertion": "off",
-        "quotes": [2, "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
+        "quotes": [
+            2,
+            "single",
+            { "avoidEscape": true, "allowTemplateLiterals": true }
+        ],
         "semi": ["error", "always"],
         "@typescript-eslint/no-empty-interface": "off",
         "@typescript-eslint/no-explicit-any": "off"

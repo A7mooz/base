@@ -5,9 +5,10 @@ export default defineConfig({
     entry: ['src/index.ts'],
     format: ['esm', 'cjs'],
     platform: 'node',
-    target: 'node16',
-    external: ['discord.js', 'mongoose'],
+    target: 'node18',
+    // Put your external packages here
+    external: [],
     treeshake: true,
-    minify: false,
+    minify: true,
     splitting: false,
 });

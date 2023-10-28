@@ -1,0 +1,53 @@
+name: release
+
+on:
+  workflow_dispatch:
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔢 Version the package
+        id: release
+        uses: google-github-actions/release-please-action@v3
+        with:
+          release-type: node
+          package-name: release-please-action
+          bump-patch-for-minor-pre-major: true
+    outputs:
+      created: ${{ steps.release.outputs.releases_created }}
+  publish:
+    needs: release-please
+    if: needs.release-please.outputs.created
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        registry: ["{ 'name': 'npm', url: 'https://registry.npmjs.org' }", "{ 'name': 'github', 'url': 'https://npm.pkg.github.com' }"]
+
+    steps:
+      - name: ✅ Checking the repo
+        uses: actions/checkout@v4
+      - name: 🟡 Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+      - name: 🟢 Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          check-latest: true
+          cache: 'pnpm'
+          registry-url: ${{ fromJson(matrix.registry).url }}
+      - name: ⬇️ Installing packages
+        run: pnpm install --strict-peer-dependencies --frozen-lockfile
+      - name: 📃 Linting
+        run: pnpm run lint
+      - name: 🔵 Type-checking
+        run: pnpm run typecheck
+      - name: 👷‍♂️ Building
+        run: pnpm run build
+      - name: ✨ Publishing
+        run: pnpm publish --ignore-scripts --dry-run
+        env:
+          NODE_AUTH_TOKEN: ${{ fromJson(matrix.registry).name == 'npm' && secrets.NPM_TOKEN || secrets.GITHUB_TOKEN }}

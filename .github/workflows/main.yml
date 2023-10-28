@@ -44,7 +44,7 @@ jobs:
       - name: 📃 Linting
         run: pnpm run lint
       - name: 🔵 Type-checking
-        run: pnpm run tsc --noEmit
+        run: pnpm exec tsc --noEmit
       - name: 👷‍♂️ Building
         run: pnpm run build
       - name: ✨ Publishing

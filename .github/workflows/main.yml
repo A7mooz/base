@@ -26,9 +26,9 @@ jobs:
         registry: ['https://registry.npmjs.org', 'https://npm.pkg.github.com']
         include:
           - registry: 'https://registry.npmjs.org'
-            env: 'secrets.NPM_TOKEN'
+            env: secrets.NPM_TOKEN
           - registry: 'https://npm.pkg.github.com'
-            env: 'secrets.GITHUB_TOKEN'
+            env: secrets.GITHUB_TOKEN
 
     steps:
       - name: ✅ Checking the repo
@@ -43,7 +43,7 @@ jobs:
           node-version: 20
           check-latest: true
           cache: 'pnpm'
-          registry-url: ${{ fromJson(matrix.registry).url }}
+          registry-url: ${{ matrix.registry }}
       - name: ⬇️ Installing packages
         run: pnpm install --strict-peer-dependencies --frozen-lockfile
       - name: 📃 Linting
@@ -55,4 +55,4 @@ jobs:
       - name: ✨ Publishing
         run: pnpm publish --ignore-scripts
         env:
-          NODE_AUTH_TOKEN: ${{ fromJson(matrix.registry).env }}
+          NODE_AUTH_TOKEN: ${{ matrix.env }}

@@ -23,7 +23,12 @@ jobs:
 
     strategy:
       matrix:
-        registry: ["{ 'name': 'npm', url: 'https://registry.npmjs.org' }", "{ 'name': 'github', 'url': 'https://npm.pkg.github.com' }"]
+        registry: ['https://registry.npmjs.org', 'https://npm.pkg.github.com']
+        include:
+          - registry: 'https://registry.npmjs.org'
+            env: 'secrets.NPM_TOKEN'
+          - registry: 'https://npm.pkg.github.com'
+            env: 'secrets.GITHUB_TOKEN'
 
     steps:
       - name: ✅ Checking the repo
@@ -48,6 +53,6 @@ jobs:
       - name: 👷‍♂️ Building
         run: pnpm run build
       - name: ✨ Publishing
-        run: pnpm publish --ignore-scripts --dry-run
+        run: pnpm publish --ignore-scripts
         env:
-          NODE_AUTH_TOKEN: ${{ fromJson(matrix.registry).name == 'npm' && secrets.NPM_TOKEN || secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ fromJson(matrix.registry).env }}

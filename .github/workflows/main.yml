@@ -53,6 +53,6 @@ jobs:
       - name: 👷‍♂️ Building
         run: pnpm run build
       - name: ✨ Publishing
-        run: pnpm publish --ignore-scripts
+        run: pnpm publish --ignore-scripts --dry-run
         env:
           NODE_AUTH_TOKEN: ${{ matrix.env }}
